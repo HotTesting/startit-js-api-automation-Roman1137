@@ -8,8 +8,8 @@ export class User {
     public static get Admin(): UserModel {
         return {
             username: "Unknown",
-            email: "wekan_superadmin@ip-5236.sunline.net.ua",
-            password: "wekan_superadmin@ip-5236.sunline.net.ua"
+            email: "test@test.com",
+            password: "123456"
         }
     }
 
@@ -21,7 +21,7 @@ export class User {
         }
     }
 
-    public static CreateValid(): UserModel {
+    public static GenerateValid(): UserModel {
         return User.Create()
             .withEmail()
             .withUserName()

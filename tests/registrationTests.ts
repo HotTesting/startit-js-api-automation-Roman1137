@@ -1,27 +1,30 @@
+import {expect} from "chai";
 import {
     RegistrationService,
     User
 } from "../framework";
-import {expect} from "chai";
 
 describe('Registration tests', async () => {
     let registrationService = new RegistrationService();
 
-    it('should register valid user', async () => {
-        let user =  User.CreateValid();
+    describe('positive cases', async () => {
 
-        let response = await registrationService.registerValid(user);
+        it('should register valid user', async () => {
+            let user =  User.GenerateValid();
 
-        expect(response, `Received response: ${JSON.stringify(response)}`)
-            .to.have.nested.property("body")
-            .that.includes.all.keys(["token", "tokenExpires", "id"])
+            let response = await registrationService.registerValid(user);
+
+            expect(response, `Received response: ${JSON.stringify(response)}`)
+                .to.have.nested.property("body")
+                .that.includes.all.keys(["token", "tokenExpires", "id"])
+        });
     });
 
-    describe(' negative cases', async () => {
+    describe('negative cases', async () => {
 
         it('should not register user with the same email twice', async () => {
             // arrange
-            let user = User.CreateValid();
+            let user = User.GenerateValid();
 
             await registrationService.registerValid(user);
 
@@ -40,18 +43,18 @@ describe('Registration tests', async () => {
 
         it('should not register user with the same userName twice', async () => {
             // arrange
-            let user = User.CreateValid();
+            let user = User.GenerateValid();
 
             await registrationService.registerValid(user);
 
-            let usernNew = User.Create()
+            let userNew = User.Create()
                 .withEmail()
                 .withPassword()
                 .withUserName(user.username)
                 .build();
 
             // act
-            let response = await registrationService.registerInValid(usernNew);
+            let response = await registrationService.registerInValid(userNew);
 
             expect(response.body.error).to.eql(403);
             expect(response.body.reason, "Username already exists")
