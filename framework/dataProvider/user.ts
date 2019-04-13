@@ -1,5 +1,6 @@
-import {UserModel} from "../models/request/userModel";
-import * as faker from "faker";
+import {UserModel} from "../models";
+import {ConsoleLogger} from "../../loggers";
+import {RandomDataGenerator} from "./randomDataGenerator";
 
 export class User {
 
@@ -7,17 +8,17 @@ export class User {
 
     public static get Admin(): UserModel {
         return {
-            username: "Unknown",
-            email: "test@test.com",
-            password: "123456"
+            username: process.env.ADMIN_USER_NAME,
+            email: process.env.ADMIN_USER_EMAIL,
+            password: process.env.ADMIN_USER_PASSWORD
         }
     }
 
     public static get Default(): UserModel {
         return {
-            username: "Unknown",
-            email: "first_user@gmail.com",
-            password: "12345"
+            username: process.env.DEFAULT_USER_NAME,
+            email: process.env.DEFAULT_USER_EMAIL,
+            password: process.env.DEFAULT_USER_PASSWORD
         }
     }
 
@@ -34,21 +35,22 @@ export class User {
     }
 
     public withUserName(userName? : string): User {
-        this.user.username = userName || faker.name.firstName();
+        this.user.username = userName || RandomDataGenerator.getRandomName(10);
         return this;
     }
 
     public withEmail(email? : string): User {
-        this.user.email = email || faker.internet.email();
+        this.user.email = email || RandomDataGenerator.getRandomEmail(10);
         return this;
     }
 
     public withPassword(password? : string): User {
-        this.user.password = password || faker.internet.password();
+        this.user.password = password || RandomDataGenerator.getRandomName(10);
         return this;
     }
 
     public build(): UserModel {
+        ConsoleLogger.info(`User is generated: ${JSON.stringify(this.user)}`);
         return this.user;
     }
 }

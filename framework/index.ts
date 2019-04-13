@@ -5,3 +5,5 @@ export {LoginService} from "./services/loginService";
 export {UserListService} from "./services/userListService";
 export {DeleteService} from "./services/deleteService";
 export {GetUserInfoService} from "./services/getUserInfoService";
+export {GetLoggedUserInfoService} from "./services/getLoggedUserInfoService";
+export {RandomDataGenerator} from "./dataProvider/randomDataGenerator";

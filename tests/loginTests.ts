@@ -12,7 +12,7 @@ describe('Login tests', async () => {
     describe('positive cases', async () => {
 
         it('should login with just registered user', async () => {
-            let user =  User.GenerateValid();
+            let user = User.GenerateValid();
 
             await registrationService.registerValid(user);
 
