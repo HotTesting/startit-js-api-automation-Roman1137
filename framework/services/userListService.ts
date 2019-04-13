@@ -1,7 +1,6 @@
 import {LoginService, Request} from ".."
 import {TypifiedResponse} from "../requestBuilder/request";
-import {ConsoleLogger} from "../../loggers";
-import {UsersListResponse, ErrorResponse, ForbidderErrorReponse} from "../models";
+import {UsersListResponse, ForbidderErrorReponse} from "../models";
 
 export class UserListService {
 
@@ -14,7 +13,7 @@ export class UserListService {
             .send();
     }
 
-    public async getAllUsersInfoByToken(token: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async getAllUsersInfoUsingSpecificToken(token: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
         return await new Request(process.env.WEKAN_USERS_LIST_URN)
             .method("GET")
             .auth(token)

@@ -3,18 +3,20 @@ import {
     LoginService,
     RegistrationService,
     User,
-    UserListService
+    UserListService,
+    DeleteService
 } from "../framework";
 
 describe('User-lists tests', async () => {
 
     let registrationService = new RegistrationService(),
         loginService = new LoginService(),
-        userListService = new UserListService();
+        userListService = new UserListService(),
+        deleteUserService = new DeleteService();
 
-    describe('positive cases', async () => {
+    xdescribe('positive cases', async () => {
 
-        xit('should display registered used', async () => {
+        it('should display registered used', async () => {
             let user = User.GenerateValid();
 
             await registrationService.registerValid(user);
@@ -26,9 +28,20 @@ describe('User-lists tests', async () => {
                 .to.be.true;
         });
 
-        //TODO WRITE WHEN DELETE SERVICE IS IMPLEMENTED
         it('should not display delete user', async () => {
+            // arrange
+            let user = User.GenerateValid();
 
+            let registrationResponse = await registrationService.registerValid(user);
+
+            await deleteUserService.deleteUser(registrationResponse.body.id);
+
+            // act
+            let getAllInfoResponse = await userListService.getAllUsersInfo();
+
+            let containsUser = getAllInfoResponse.body.list.some(us => us.username === user.username);
+            expect(containsUser, `Received response: ${JSON.stringify(getAllInfoResponse)}`)
+                .to.be.false;
         });
     });
 
@@ -36,7 +49,7 @@ describe('User-lists tests', async () => {
 
         it('should return error when non-admin token is used', async () => {
             let defaultUserToken = await loginService.getDefaultUserToken();
-            let response = await userListService.getAllUsersInfoByToken(defaultUserToken);
+            let response = await userListService.getAllUsersInfoUsingSpecificToken(defaultUserToken);
 
             expect(response.body.isClientSafe).to.eql(true);
             expect(response.body.error).to.eql("Forbidden");
