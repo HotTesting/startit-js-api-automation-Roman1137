@@ -23,7 +23,10 @@ export class RandomDataGenerator {
     }
 
     public static getRandomEmail(length: number, containNumbers = false, containSpace = false): string {
-        return RandomDataGenerator.getRandomName(length, containNumbers, containSpace) +
-            `${RandomDataGenerator.DotSign + RandomDataGenerator.EmailDomain + RandomDataGenerator.PointSign + RandomDataGenerator.CountryCode}`;
+        return RandomDataGenerator.getRandomName(length, containNumbers, containSpace)
+            + RandomDataGenerator.DotSign
+            + RandomDataGenerator.EmailDomain
+            + RandomDataGenerator.PointSign
+            + RandomDataGenerator.CountryCode;
     }
 }
