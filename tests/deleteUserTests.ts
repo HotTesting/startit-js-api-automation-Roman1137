@@ -3,15 +3,13 @@ import {
     DeleteService,
     LoginService,
     RegistrationService,
-    User,
-    UserListService
+    User
 } from "../framework";
 
 describe('Delete user tests', async () => {
 
     let registrationService = new RegistrationService(),
         loginService = new LoginService(),
-        userListService = new UserListService(),
         deleteUserService = new DeleteService();
 
     xdescribe('positive cases', async () => {
@@ -28,15 +26,6 @@ describe('Delete user tests', async () => {
             // assert
             expect(deleteUserResponse.body._id, `Received response: ${JSON.stringify(deleteUserResponse)}`)
                 .to.eql(registrationResponse.body.id);
-        });
-
-        it('should return error while deleting not registered user', async () => {
-            let id = "12345";
-
-            let deleteUserResponse = await deleteUserService.deleteUserInvalid(id);
-
-            // assert
-            //TODO Add when functionality is working
         });
     });
 
@@ -78,6 +67,15 @@ describe('Delete user tests', async () => {
             expect(deleteUserResponse.body.message).to.eql("Unauthorized [Unauthorized]");
             expect(deleteUserResponse.body.errorType).to.eql("Meteor.Error");
             expect(deleteUserResponse.body.statusCode).to.eql(401);
+        });
+
+        it('should return error while deleting not registered user', async () => {
+            let userId = "some_value";
+
+            let deleteUserResponse = await deleteUserService.deleteUserInvalid(userId);
+
+            // assert
+            //TODO Add when functionality is working
         });
     });
 });

@@ -1,28 +1,27 @@
 import {LoginService, Request} from ".."
 import {TypifiedResponse} from "../requestBuilder/request";
-import {ErrorResponse, ForbidderErrorReponse} from "../models";
-import {DeletedUserResponse} from "../models/response/deletedUserResponse";
+import {ErrorResponse, ForbidderErrorReponse, UserInfoResponse} from "../models";
 import {ConsoleLogger} from "../../loggers";
 
-export class DeleteService {
+export class GetUserInfoService {
 
-    public async deleteUser(userId): Promise<TypifiedResponse<DeletedUserResponse>> {
+    public async getUserInfo(userId): Promise<TypifiedResponse<UserInfoResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let token = await new LoginService().getAdminToken();
 
         return await new Request(absoluteUrl)
-            .method("DELETE")
+            .method("GET")
             .auth(token)
             .send();
     }
 
-    public async deleteUserInvalid(userId): Promise<TypifiedResponse<ErrorResponse>> {
+    public async getUserInfoInvalid(userId): Promise<TypifiedResponse<ErrorResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let token = await new LoginService().getAdminToken();
 
         try {
             await new Request(absoluteUrl)
-                .method("DELETE")
+                .method("GET")
                 .auth(token)
                 .send();
         }
@@ -32,20 +31,20 @@ export class DeleteService {
         }
     }
 
-    public async deleteUserUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async getUserInfoUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
 
         return await new Request(absoluteUrl)
-            .method("DELETE")
+            .method("GET")
             .auth(token)
             .send();
     }
 
-    public async deleteUserWithoutToken(userId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async getUserInfoWithoutToken(userId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
 
         return await new Request(absoluteUrl)
-            .method("DELETE")
+            .method("GET")
             .send();
     }
 }
