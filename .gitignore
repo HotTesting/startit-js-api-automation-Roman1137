@@ -80,3 +80,7 @@ typings/
 
 # idea
 .idea/
+
+# compiled TypeScript files
+*.js.map
+*.js
