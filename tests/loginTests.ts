@@ -32,7 +32,7 @@ describe('Login tests', async () => {
 
             await registrationService.registerValid(user);
 
-            user.password = "some_invali_password";
+            user.password = "some_invalid_password";
             // act
             let response = await loginService.loginInValid(user);
 
