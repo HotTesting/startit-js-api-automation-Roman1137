@@ -1,13 +1,11 @@
-import {UserModel} from "../models/request/userModel";
-import {UserAuthResultResponse} from "../models/response/userAuthResultResponse";
-import {ErrorResponse} from "../models/response/errorResponse";
+import {ErrorResponse, UserModel, UserAuthResultResponse} from "../models";
 import {Request} from ".."
 import {TypifiedResponse} from "../requestBuilder/request";
 import {ConsoleLogger} from "../../loggers";
 
 export class RegistrationService {
 
-    public async registerValid(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
+    public async registerUser(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
 
         return await new Request(process.env.WEKAN_REGISTRATION_URN)
             .method("POST")
@@ -15,7 +13,7 @@ export class RegistrationService {
             .send();
     }
 
-    public async registerInValid(user: UserModel): Promise<TypifiedResponse<ErrorResponse>> {
+    public async registerIncorrectly(user: UserModel): Promise<TypifiedResponse<ErrorResponse>> {
         try {
             await new Request(process.env.WEKAN_REGISTRATION_URN)
                 .method("POST")

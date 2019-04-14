@@ -3,7 +3,7 @@ import {
     RegistrationService,
     User,
     LoginService
-} from "../framework";
+} from "./index";
 
 describe('Login tests', async () => {
     let registrationService = new RegistrationService(),
@@ -14,7 +14,7 @@ describe('Login tests', async () => {
         it('should login with just registered user', async () => {
             let user = User.GenerateValid();
 
-            await registrationService.registerValid(user);
+            await registrationService.registerUser(user);
 
             let response = await loginService.loginValid(user);
 
@@ -30,7 +30,7 @@ describe('Login tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            await registrationService.registerValid(user);
+            await registrationService.registerUser(user);
 
             user.password = "some_invalid_password";
             // act

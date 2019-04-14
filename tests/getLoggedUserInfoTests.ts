@@ -4,8 +4,9 @@ import {
     LoginService,
     RegistrationService,
     UserListService,
-    User, GetUserInfoService, GetLoggedUserInfoService
-} from "../framework";
+    User, GetUserInfoService,
+    GetLoggedUserInfoService
+} from "./index";
 
 describe('Get logged user info tests', async () => {
 
@@ -20,7 +21,7 @@ describe('Get logged user info tests', async () => {
 
         it('should return just created user info', async () => {
             let user = User.GenerateValid();
-            let registerResponse = await registrationService.registerValid(user);
+            let registerResponse = await registrationService.registerUser(user);
 
             let getLoggedInfoResponse = await getLoggedUserInfoService.getUserInfoByToken(registerResponse.body.token);
 
@@ -50,7 +51,7 @@ describe('Get logged user info tests', async () => {
 
         xit('should not return deleted user info', async () => {
             let user = User.GenerateValid();
-            let registerResponse = await registrationService.registerValid(user);
+            let registerResponse = await registrationService.registerUser(user);
 
             await deleteUserService.deleteUser(registerResponse.body.id);
 

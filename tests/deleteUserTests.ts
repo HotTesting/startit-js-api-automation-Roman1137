@@ -4,7 +4,7 @@ import {
     LoginService,
     RegistrationService,
     User
-} from "../framework";
+} from "./index";
 
 describe('Delete user tests', async () => {
 
@@ -12,13 +12,13 @@ describe('Delete user tests', async () => {
         loginService = new LoginService(),
         deleteUserService = new DeleteService();
 
-    xdescribe('positive cases', async () => {
+    describe('positive cases', async () => {
         
         it('should delete just registered user', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            let registrationResponse = await registrationService.registerValid(user);
+            let registrationResponse = await registrationService.registerUser(user);
 
             // act
             let deleteUserResponse = await deleteUserService.deleteUser(registrationResponse.body.id);
@@ -35,7 +35,7 @@ describe('Delete user tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            let registrationResponse = await registrationService.registerValid(user);
+            let registrationResponse = await registrationService.registerUser(user);
 
             // act
             let defaultUserToken = await loginService.getDefaultUserToken();
@@ -55,7 +55,7 @@ describe('Delete user tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            let registrationResponse = await registrationService.registerValid(user);
+            let registrationResponse = await registrationService.registerUser(user);
 
             // act
             let deleteUserResponse = await deleteUserService.deleteUserWithoutToken(registrationResponse.body.id);
@@ -67,15 +67,6 @@ describe('Delete user tests', async () => {
             expect(deleteUserResponse.body.message).to.eql("Unauthorized [Unauthorized]");
             expect(deleteUserResponse.body.errorType).to.eql("Meteor.Error");
             expect(deleteUserResponse.body.statusCode).to.eql(401);
-        });
-
-        it('should return error while deleting not registered user', async () => {
-            let userId = "some_value";
-
-            let deleteUserResponse = await deleteUserService.deleteUserInvalid(userId);
-
-            // assert
-            //TODO Add when functionality is working
         });
     });
 });

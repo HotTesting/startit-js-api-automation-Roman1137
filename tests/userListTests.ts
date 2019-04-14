@@ -5,7 +5,7 @@ import {
     User,
     UserListService,
     DeleteService
-} from "../framework";
+} from "./index";
 
 describe('User-lists tests', async () => {
 
@@ -19,7 +19,7 @@ describe('User-lists tests', async () => {
         it('should display registered used', async () => {
             let user = User.GenerateValid();
 
-            await registrationService.registerValid(user);
+            await registrationService.registerUser(user);
 
             let response = await userListService.getAllUsersInfo();
 
@@ -32,7 +32,7 @@ describe('User-lists tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            let registrationResponse = await registrationService.registerValid(user);
+            let registrationResponse = await registrationService.registerUser(user);
 
             await deleteUserService.deleteUser(registrationResponse.body.id);
 

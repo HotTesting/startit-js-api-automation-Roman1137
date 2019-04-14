@@ -1,8 +1,6 @@
 import {LoginService, Request} from ".."
 import {TypifiedResponse} from "../requestBuilder/request";
-import {ErrorResponse, ForbidderErrorReponse} from "../models";
-import {DeletedUserResponse} from "../models/response/deletedUserResponse";
-import {ConsoleLogger} from "../../loggers";
+import {ForbidderErrorReponse, DeletedUserResponse} from "../models";
 
 export class DeleteService {
 
@@ -14,22 +12,6 @@ export class DeleteService {
             .method("DELETE")
             .auth(token)
             .send();
-    }
-
-    public async deleteUserInvalid(userId): Promise<TypifiedResponse<ErrorResponse>> {
-        let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
-        let token = await new LoginService().getAdminToken();
-
-        try {
-            await new Request(absoluteUrl)
-                .method("DELETE")
-                .auth(token)
-                .send();
-        }
-        catch (error) {
-            ConsoleLogger.debug(`Unsuccessful status code is expected. Error: ${error}`);
-            return error.response;
-        }
     }
 
     public async deleteUserUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {

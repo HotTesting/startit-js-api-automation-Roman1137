@@ -5,7 +5,7 @@ import {
     RegistrationService,
     UserListService,
     User, GetUserInfoService
-} from "../framework";
+} from "./index";
 
 describe('Get User Info tests', async () => {
 
@@ -21,7 +21,7 @@ describe('Get User Info tests', async () => {
         it('should return just created user info', async () => {
             let user = User.GenerateValid();
 
-            let registerResponse = await registrationService.registerValid(user);
+            let registerResponse = await registrationService.registerUser(user);
 
             let getInfoResponse = await getUserInfoService.getUserInfo(registerResponse.body.id);
 
@@ -56,7 +56,7 @@ describe('Get User Info tests', async () => {
 
         it('should return error when getting info with non-admin token', async () => {
             let user = User.GenerateValid();
-            let registeredResponse = await registrationService.registerValid(user);
+            let registeredResponse = await registrationService.registerUser(user);
 
             let defaultUserToken = await loginService.getDefaultUserToken();
             let getInfoResponse = await getUserInfoService.getUserInfoUsingSpecificToken(registeredResponse.body.id, defaultUserToken);
@@ -72,7 +72,7 @@ describe('Get User Info tests', async () => {
         it('should return error when getting info without token', async () => {
             let user = User.GenerateValid();
 
-            let registerResponse = await registrationService.registerValid(user);
+            let registerResponse = await registrationService.registerUser(user);
 
             let getInfoResponse = await getUserInfoService.getUserInfoWithoutToken(registerResponse.body.id);
 

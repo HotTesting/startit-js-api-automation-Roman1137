@@ -2,7 +2,7 @@ import {expect} from "chai";
 import {
     RegistrationService,
     User
-} from "../framework";
+} from "./index";
 
 describe('Registration tests', async () => {
     let registrationService = new RegistrationService();
@@ -12,7 +12,7 @@ describe('Registration tests', async () => {
         it('should register valid user', async () => {
             let user =  User.GenerateValid();
 
-            let response = await registrationService.registerValid(user);
+            let response = await registrationService.registerUser(user);
 
             expect(response, `Received response: ${JSON.stringify(response)}`)
                 .to.have.nested.property("body")
@@ -26,7 +26,7 @@ describe('Registration tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            await registrationService.registerValid(user);
+            await registrationService.registerUser(user);
 
             let userNew = User.Create()
                 .withEmail(user.email)
@@ -35,7 +35,7 @@ describe('Registration tests', async () => {
                 .build();
 
             // act
-            let response = await registrationService.registerInValid(userNew);
+            let response = await registrationService.registerIncorrectly(userNew);
 
             expect(response.body.error).to.eql(403);
             expect(response.body.reason, "Email already exists")
@@ -45,7 +45,7 @@ describe('Registration tests', async () => {
             // arrange
             let user = User.GenerateValid();
 
-            await registrationService.registerValid(user);
+            await registrationService.registerUser(user);
 
             let userNew = User.Create()
                 .withEmail()
@@ -54,7 +54,7 @@ describe('Registration tests', async () => {
                 .build();
 
             // act
-            let response = await registrationService.registerInValid(userNew);
+            let response = await registrationService.registerIncorrectly(userNew);
 
             expect(response.body.error).to.eql(403);
             expect(response.body.reason, "Username already exists")
