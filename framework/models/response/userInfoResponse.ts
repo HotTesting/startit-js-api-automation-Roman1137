@@ -6,6 +6,7 @@ export interface UserInfoResponse {
     emails: Array<EmailModel>;
     isAdmin: boolean;
     profile: object;
+    authenticationMethod: string
 }
 
 interface ServicesModel {

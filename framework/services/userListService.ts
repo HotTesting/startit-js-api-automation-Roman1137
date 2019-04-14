@@ -2,13 +2,13 @@ import {
     LoginService,
     Request,
     TypifiedResponse,
-    UsersListResponse,
-    ForbidderErrorReponse
+    ForbidderErrorReponse,
+    UserInfo
 } from ".."
 
 export class UserListService {
 
-    public async getAllUsersInfo(): Promise<TypifiedResponse<UsersListResponse>> {
+    public async getAllUsersInfo(): Promise<TypifiedResponse<Array<UserInfo>>> {
         let token = await new LoginService().getAdminToken();
 
         return await new Request(process.env.WEKAN_USERS_URN)

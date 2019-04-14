@@ -15,6 +15,14 @@ export class GetLoggedUserInfoService {
             .send();
     }
 
+    public async getUserInfoByTokenIncorrectly(token: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+
+        return await new Request(process.env.WEKAN_USER_URN)
+            .method("GET")
+            .auth(token)
+            .send();
+    }
+
     public async getUserInfoWithoutToken(): Promise<TypifiedResponse<ForbidderErrorReponse>> {
 
         return await new Request(process.env.WEKAN_USER_URN)

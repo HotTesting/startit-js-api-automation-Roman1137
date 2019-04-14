@@ -49,16 +49,21 @@ describe('Get logged user info tests', async () => {
             expect(getLoggedInfoResponse.body.statusCode).to.eql(401);
         });
 
-        xit('should not return deleted user info', async () => {
+        it('should not return deleted user info', async () => {
             let user = User.GenerateValid();
             let registerResponse = await registrationService.registerUser(user);
 
             await deleteUserService.deleteUser(registerResponse.body.id);
 
             let token = registerResponse.body.token;
-            let getLoggedInfoResponse = await getLoggedUserInfoService.getUserInfoByToken(token);
+            let getLoggedInfoResponse = await getLoggedUserInfoService.getUserInfoByTokenIncorrectly(token);
 
-            //TODO finished when is working
+            expect(getLoggedInfoResponse.body.isClientSafe).to.eql(true);
+            expect(getLoggedInfoResponse.body.error).to.eql("Unauthorized");
+            expect(getLoggedInfoResponse.body.reason).to.eql("Unauthorized");
+            expect(getLoggedInfoResponse.body.message).to.eql("Unauthorized [Unauthorized]");
+            expect(getLoggedInfoResponse.body.errorType).to.eql("Meteor.Error");
+            expect(getLoggedInfoResponse.body.statusCode).to.eql(401);
         });
     });
 });

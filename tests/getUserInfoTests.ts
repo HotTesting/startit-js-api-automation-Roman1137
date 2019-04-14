@@ -16,7 +16,7 @@ describe('Get User Info tests', async () => {
         getUserInfoService = new GetUserInfoService();
 
 
-    xdescribe('positive tests', async () => {
+    describe('positive tests', async () => {
 
         it('should return just created user info', async () => {
             let user = User.GenerateValid();
@@ -32,7 +32,7 @@ describe('Get User Info tests', async () => {
 
             expect(getInfoResponse.body.username).to.eql(user.username);
 
-            expect(getInfoResponse.body.isAdmin).to.eql(false);
+            expect(getInfoResponse.body.authenticationMethod).to.eql("password");
         });
 
         it('should have [isAdmin = true] in info for admin user', async () => {
@@ -45,14 +45,6 @@ describe('Get User Info tests', async () => {
     });
 
     describe('negative tests', async () => {
-
-        xit('should return error when getting token for unregistered user', async () => {
-            let userId = "some_value";
-            let getInfoResponse = await getUserInfoService.getUserInfoIncorrectly(userId);
-
-            // TODO finished when functionality is working
-            //expect(getInfoResponse.body.)
-        });
 
         it('should return error when getting info with non-admin token', async () => {
             let user = User.GenerateValid();

@@ -1,8 +1,4 @@
-export interface UsersListResponse {
-    list: Array<UserInfo>;
-}
-
-interface UserInfo {
+export interface UserInfo {
     _id: string;
     username: string;
 }

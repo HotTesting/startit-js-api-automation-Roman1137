@@ -14,7 +14,7 @@ describe('User-lists tests', async () => {
         userListService = new UserListService(),
         deleteUserService = new DeleteService();
 
-    xdescribe('positive cases', async () => {
+    describe('positive cases', async () => {
 
         it('should display registered used', async () => {
             let user = User.GenerateValid();
@@ -23,7 +23,7 @@ describe('User-lists tests', async () => {
 
             let response = await userListService.getAllUsersInfo();
 
-            let containsUser = response.body.list.some(us => us.username === user.username);
+            let containsUser = response.body.some(us => us.username === user.username);
             expect(containsUser, `Received response: ${JSON.stringify(response)}`)
                 .to.be.true;
         });
@@ -39,7 +39,7 @@ describe('User-lists tests', async () => {
             // act
             let getAllInfoResponse = await userListService.getAllUsersInfo();
 
-            let containsUser = getAllInfoResponse.body.list.some(us => us.username === user.username);
+            let containsUser = getAllInfoResponse.body.some(us => us.username === user.username);
             expect(containsUser, `Received response: ${JSON.stringify(getAllInfoResponse)}`)
                 .to.be.false;
         });

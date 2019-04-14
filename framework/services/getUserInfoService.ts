@@ -6,7 +6,6 @@ import {
     ForbidderErrorReponse,
     UserInfoResponse
 } from ".."
-import {ConsoleLogger} from "../../loggers";
 
 export class GetUserInfoService {
 
@@ -18,22 +17,6 @@ export class GetUserInfoService {
             .method("GET")
             .auth(token)
             .send();
-    }
-
-    public async getUserInfoIncorrectly(userId): Promise<TypifiedResponse<ErrorResponse>> {
-        let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
-        let token = await new LoginService().getAdminToken();
-
-        try {
-            await new Request(absoluteUrl)
-                .method("GET")
-                .auth(token)
-                .send();
-        }
-        catch (error) {
-            ConsoleLogger.debug(`Unsuccessful status code is expected. Error: ${error}`);
-            return error.response;
-        }
     }
 
     public async getUserInfoUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {
