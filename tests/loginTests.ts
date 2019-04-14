@@ -16,7 +16,7 @@ describe('Login tests', async () => {
 
             await registrationService.registerUser(user);
 
-            let response = await loginService.loginValid(user);
+            let response = await loginService.login(user);
 
             expect(response, `Received response: ${JSON.stringify(response)}`)
                 .to.have.nested.property("body")
@@ -34,7 +34,7 @@ describe('Login tests', async () => {
 
             user.password = "some_invalid_password";
             // act
-            let response = await loginService.loginInValid(user);
+            let response = await loginService.loginIncorrectly(user);
 
             expect(response.body.error).to.eql(403);
             expect(response.body.reason, "Incorrect password")

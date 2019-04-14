@@ -36,7 +36,7 @@ describe('Get User Info tests', async () => {
         });
 
         it('should have [isAdmin = true] in info for admin user', async () => {
-            let loginResponse = await loginService.loginValid(User.Admin);
+            let loginResponse = await loginService.login(User.Admin);
 
             let getInfoResponse = await getUserInfoService.getUserInfo(loginResponse.body.id);
 
@@ -48,7 +48,7 @@ describe('Get User Info tests', async () => {
 
         xit('should return error when getting token for unregistered user', async () => {
             let userId = "some_value";
-            let getInfoResponse = await getUserInfoService.getUserInfoInvalid(userId);
+            let getInfoResponse = await getUserInfoService.getUserInfoIncorrectly(userId);
 
             // TODO finished when functionality is working
             //expect(getInfoResponse.body.)

@@ -1,6 +1,10 @@
-import {LoginService, Request} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
-import {UsersListResponse, ForbidderErrorReponse} from "../models";
+import {
+    LoginService,
+    Request,
+    TypifiedResponse,
+    UsersListResponse,
+    ForbidderErrorReponse
+} from ".."
 
 export class UserListService {
 

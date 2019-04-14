@@ -1,6 +1,10 @@
-import {ErrorResponse, UserModel, UserAuthResultResponse} from "../models";
-import {Request} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
+import {
+    ErrorResponse,
+    UserModel,
+    UserAuthResultResponse,
+    Request,
+    TypifiedResponse
+} from "..";
 import {ConsoleLogger} from "../../loggers";
 
 export class RegistrationService {

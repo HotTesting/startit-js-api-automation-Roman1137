@@ -1,6 +1,10 @@
-import {LoginService, Request} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
-import {ForbidderErrorReponse, DeletedUserResponse} from "../models";
+import {
+    LoginService,
+    Request,
+    TypifiedResponse,
+    ForbidderErrorReponse,
+    DeletedUserResponse
+} from ".."
 
 export class DeleteService {
 

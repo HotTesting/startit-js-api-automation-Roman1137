@@ -1,13 +1,16 @@
-import {UserModel} from "../models/request/userModel";
-import {UserAuthResultResponse} from "../models/response/userAuthResultResponse";
-import {ErrorResponse} from "../models/response/errorResponse";
-import {Request, User} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
+import {
+    UserAuthResultResponse,
+    UserModel,
+    ErrorResponse,
+    Request,
+    User,
+    TypifiedResponse
+} from "..";
 import {ConsoleLogger} from "../../loggers";
 
 export class LoginService {
 
-    public async loginValid(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
+    public async login(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
 
         return await new Request(process.env.WEKAN_LOGIN_URN)
             .method("POST")
@@ -15,7 +18,7 @@ export class LoginService {
             .send();
     }
 
-    public async loginInValid(user: UserModel): Promise<TypifiedResponse<ErrorResponse>> {
+    public async loginIncorrectly(user: UserModel): Promise<TypifiedResponse<ErrorResponse>> {
         try {
             await new Request(process.env.WEKAN_REGISTRATION_URN)
                 .method("POST")
@@ -29,13 +32,13 @@ export class LoginService {
     }
 
     public async getAdminToken(): Promise<string> {
-        let result = await this.loginValid(User.Admin);
+        let result = await this.login(User.Admin);
 
         return Promise.resolve(result.body.token);
     }
 
     public async getDefaultUserToken(): Promise<string> {
-        let result = await this.loginValid(User.Default);
+        let result = await this.login(User.Default);
 
         return Promise.resolve(result.body.token);
     }

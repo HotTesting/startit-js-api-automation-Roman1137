@@ -1,6 +1,9 @@
-import {LoginService, Request} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
-import {ErrorResponse, ForbidderErrorReponse, UserLoggedInfoResponse} from "../models";
+import {
+    Request,
+    TypifiedResponse,
+    ForbidderErrorReponse,
+    UserLoggedInfoResponse
+} from ".."
 
 export class GetLoggedUserInfoService {
 

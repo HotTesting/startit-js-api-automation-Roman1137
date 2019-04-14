@@ -1,6 +1,11 @@
-import {LoginService, Request} from ".."
-import {TypifiedResponse} from "../requestBuilder/request";
-import {ErrorResponse, ForbidderErrorReponse, UserInfoResponse} from "../models";
+import {
+    LoginService,
+    Request,
+    TypifiedResponse,
+    ErrorResponse,
+    ForbidderErrorReponse,
+    UserInfoResponse
+} from ".."
 import {ConsoleLogger} from "../../loggers";
 
 export class GetUserInfoService {
@@ -15,7 +20,7 @@ export class GetUserInfoService {
             .send();
     }
 
-    public async getUserInfoInvalid(userId): Promise<TypifiedResponse<ErrorResponse>> {
+    public async getUserInfoIncorrectly(userId): Promise<TypifiedResponse<ErrorResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let token = await new LoginService().getAdminToken();
 
