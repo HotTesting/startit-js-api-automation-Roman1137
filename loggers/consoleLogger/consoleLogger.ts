@@ -3,7 +3,7 @@ import {configure, getLogger} from "log4js";
 const consoleLogger = getLogger();
 configure({
     appenders: { console: { type: 'console'} },
-    categories: { default: { appenders: [ 'console' ], level: 'all' } }
+    categories: { default: { appenders: [ 'console' ], level: process.env.LOGGING_LEVEL } }
 });
 
 export class ConsoleLogger {
