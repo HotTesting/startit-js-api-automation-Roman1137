@@ -4,7 +4,7 @@ import {
     RegistrationService,
     User,
     UserListService,
-    DeleteService
+    DeleteUserService
 } from "./index";
 
 describe('User-lists tests', async () => {
@@ -12,7 +12,7 @@ describe('User-lists tests', async () => {
     let registrationService = new RegistrationService(),
         loginService = new LoginService(),
         userListService = new UserListService(),
-        deleteUserService = new DeleteService();
+        deleteUserService = new DeleteUserService();
 
     describe('positive cases', async () => {
 

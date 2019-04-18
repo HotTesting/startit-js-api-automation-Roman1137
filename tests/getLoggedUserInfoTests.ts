@@ -1,6 +1,6 @@
 import {expect} from "chai";
 import {
-    DeleteService,
+    DeleteUserService,
     LoginService,
     RegistrationService,
     UserListService,
@@ -13,7 +13,7 @@ describe('Get logged user info tests', async () => {
     let registrationService = new RegistrationService(),
         loginService = new LoginService(),
         userListService = new UserListService(),
-        deleteUserService = new DeleteService(),
+        deleteUserService = new DeleteUserService(),
         getUserInfoService = new GetUserInfoService(),
         getLoggedUserInfoService = new GetLoggedUserInfoService();
 

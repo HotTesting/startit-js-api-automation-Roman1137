@@ -1,6 +1,6 @@
 import {expect} from "chai";
 import {
-    DeleteService,
+    DeleteUserService,
     LoginService,
     RegistrationService,
     User
@@ -10,10 +10,10 @@ describe('Delete user tests', async () => {
 
     let registrationService = new RegistrationService(),
         loginService = new LoginService(),
-        deleteUserService = new DeleteService();
+        deleteUserService = new DeleteUserService();
 
     describe('positive cases', async () => {
-        
+
         it('should delete just registered user', async () => {
             // arrange
             let user = User.GenerateValid();
@@ -30,7 +30,7 @@ describe('Delete user tests', async () => {
     });
 
     describe('negative cases', async () => {
-        
+
         it('should return error while deleting with non-admin token', async () => {
             // arrange
             let user = User.GenerateValid();

@@ -6,7 +6,7 @@ import {
     DeletedUserResponse
 } from ".."
 
-export class DeleteService {
+export class DeleteUserService {
 
     public async deleteUser(userId): Promise<TypifiedResponse<DeletedUserResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
