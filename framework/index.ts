@@ -1,4 +1,4 @@
 export * from "./models";
-export * from "./services";
+export * from "./services/user/index";
 export * from "./dataProvider";
 export * from "./requestBuilder"

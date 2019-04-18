@@ -1,0 +1,1 @@
+export {BoardCreationResultResponse} from "./boardCreationResultResponse";

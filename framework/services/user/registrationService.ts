@@ -4,8 +4,8 @@ import {
     UserAuthResultResponse,
     Request,
     TypifiedResponse
-} from "..";
-import {ConsoleLogger} from "../../loggers";
+} from "../../index";
+import {ConsoleLogger} from "../../../loggers/index";
 
 export class RegistrationService {
 

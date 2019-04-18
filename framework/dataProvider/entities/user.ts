@@ -1,6 +1,6 @@
-import {UserModel} from "../models";
-import {ConsoleLogger} from "../../loggers";
-import {RandomDataGenerator} from "./randomDataGenerator";
+import {UserModel} from "../../models";
+import {ConsoleLogger} from "../../../loggers";
+import {RandomDataGenerator} from "../randomDataGenerator";
 
 export class User {
 

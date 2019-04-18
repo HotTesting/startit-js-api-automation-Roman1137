@@ -4,7 +4,7 @@ import {
     TypifiedResponse,
     ForbidderErrorReponse,
     UserInfo
-} from ".."
+} from "../../index"
 
 export class UserListService {
 

@@ -5,7 +5,7 @@ import {
     ErrorResponse,
     ForbidderErrorReponse,
     UserInfoResponse
-} from ".."
+} from "../../index"
 
 export class GetUserInfoService {
 

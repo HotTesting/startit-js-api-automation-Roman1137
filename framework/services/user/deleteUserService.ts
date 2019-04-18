@@ -4,11 +4,11 @@ import {
     TypifiedResponse,
     ForbidderErrorReponse,
     DeletedUserResponse
-} from ".."
+} from "../../index"
 
 export class DeleteUserService {
 
-    public async deleteUser(userId): Promise<TypifiedResponse<DeletedUserResponse>> {
+    public async deleteUser(userId: string): Promise<TypifiedResponse<DeletedUserResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let token = await new LoginService().getAdminToken();
 

@@ -5,8 +5,8 @@ import {
     Request,
     User,
     TypifiedResponse
-} from "..";
-import {ConsoleLogger} from "../../loggers";
+} from "../../index";
+import {ConsoleLogger} from "../../../loggers";
 
 export class LoginService {
 
