@@ -12,7 +12,7 @@ export class Board {
         return Board.Create()
             .WithTitle()
             .WithOwner()
-            .WithPermissions()
+            .WithPermissions(Permissions.Public)
             .WithColor()
             .build();
     }
