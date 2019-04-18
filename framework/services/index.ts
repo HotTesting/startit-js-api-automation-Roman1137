@@ -1,8 +1,2 @@
-export {
-    DeleteUserService,
-    GetLoggedUserInfoService,
-    GetUserInfoService,
-    LoginService,
-    RegistrationService,
-    UserListService
-} from "./user";
+export * from "./user";
+export * from "./board";

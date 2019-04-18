@@ -3,7 +3,7 @@ import {
     TypifiedResponse,
     ForbidderErrorReponse,
     UserLoggedInfoResponse
-} from ".."
+} from "../../index"
 
 export class GetLoggedUserInfoService {
 
