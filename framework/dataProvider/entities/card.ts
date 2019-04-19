@@ -30,7 +30,7 @@ export class Card {
         return this;
     }
 
-    public build(): BoardModel {
+    public build(): CardModel {
         ConsoleLogger.info(`Card is generated: ${JSON.stringify(this.card)}`);
         return this.card;
     }

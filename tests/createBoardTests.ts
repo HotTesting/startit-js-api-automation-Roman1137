@@ -1,5 +1,10 @@
 import {expect} from "chai";
-import {Board, CreateBoardService, GetAllBoardsService, Permissions} from "./index";
+import {
+    Board,
+    CreateBoardService,
+    GetAllBoardsService,
+    Permissions
+} from "./index";
 
 describe('Create board tests', async () => {
     let createBoardService = new CreateBoardService(),

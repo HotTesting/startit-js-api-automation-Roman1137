@@ -3,7 +3,11 @@ import {
     Board,
     CreateBoardService,
     CreateSwimlaneService,
-    GetAllSwimlanesService, Swimlane, TypifiedResponse, SwimLaneCreationResponseModel, SwimlaneModel
+    GetAllSwimlanesService,
+    Swimlane,
+    TypifiedResponse,
+    SwimLaneCreationResponseModel,
+    SwimlaneModel
 } from "./index";
 
 describe('Create board tests', async () => {

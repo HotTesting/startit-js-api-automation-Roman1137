@@ -3,12 +3,13 @@ import {
     BoardCreationResultResponse,
     LoginService,
     Request,
-    ForbidderErrorReponse
+    ForbidderErrorReponse, GetCardByIdResponseModel
 } from "../../index";
+import {ConsoleLogger} from "../../../loggers";
 
 export class RetrieveCardService {
 
-    public async createAllCardsFromBoardBySwimlaneId(boardId: string, swimlaneId: string): Promise<TypifiedResponse<BoardCreationResultResponse>> {
+    public async retrieveAllCardsFromBoardBySwimlaneId(boardId: string, swimlaneId: string): Promise<TypifiedResponse<Array<GetCardByIdResponseModel>>> {
         let loginResponse = await new LoginService().loginAsAdmin();
         let absoluteUrn =  this.getAbsoluteUrn(boardId, swimlaneId);
 
@@ -18,12 +19,17 @@ export class RetrieveCardService {
             .send();
     }
 
-    public async createAllCardsFromBoardBySwimlaneIdWithoutToken(boardId: string, swimlaneId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async retrieveAllCardsFromBoardBySwimlaneIdWithoutToken(boardId: string, swimlaneId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
         let absoluteUrn =  this.getAbsoluteUrn(boardId, swimlaneId);
 
-        return await new Request(absoluteUrn)
-            .method("GET")
-            .send();
+        try {
+            await new Request(absoluteUrn)
+                .method("GET")
+                .send();
+        } catch (error) {
+            ConsoleLogger.debug(`Unsuccessful status code is expected. Error: ${error}`);
+            return error.response;
+        }
     }
 
     private getAbsoluteUrn(boardId: string, swimlaneId: string): string {
