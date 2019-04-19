@@ -5,7 +5,7 @@ import {
     User,
     UserListService,
     DeleteUserService
-} from "./index";
+} from "../index";
 
 describe('User-lists tests', async () => {
 

@@ -4,26 +4,32 @@ import {
     LoginService,
     Request,
     ForbidderErrorReponse,
-    BoardModel,
+    CardModel,
 } from "../../index";
 
 export class CreateCardService {
 
-    public async createCard(board: BoardModel): Promise<TypifiedResponse<BoardCreationResultResponse>> {
+    public async createCardByBoardId(card: CardModel, boardId: string): Promise<TypifiedResponse<BoardCreationResultResponse>> {
         let loginResponse = await new LoginService().loginAsAdmin();
+        let absoluteUrn =  this.getAbsoluteUrn(boardId);
 
-        return await new Request(process.env.WEKAN_BOARDS_URN)
+        return await new Request(absoluteUrn)
             .method("POST")
             .auth(loginResponse.token)
-            .body(board)
+            .body(card)
             .send();
     }
 
-    public async createBoardWithoutToken(board: BoardModel): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async createCardByBoardIdWithoutToken(card: CardModel, boardId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+        let absoluteUrn = this.getAbsoluteUrn(boardId);
 
-        return await new Request(process.env.WEKAN_BOARDS_URN)
+        return await new Request(absoluteUrn)
             .method("POST")
-            .body(board)
+            .body(card)
             .send();
+    }
+
+    private getAbsoluteUrn(boardId: string): string {
+        return `${process.env.WEKAN_BOARDS_URN}/${boardId}${process.env.WEKAN_LIST_URN}/${process.env.LIST_ID_DEFAULT}${process.env.WEKAN_CARDS_URN}`;
     }
 }

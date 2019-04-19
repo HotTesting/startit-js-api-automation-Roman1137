@@ -4,7 +4,7 @@ import {
     LoginService,
     RegistrationService,
     User
-} from "./index";
+} from "../index";
 
 describe('Delete user tests', async () => {
 

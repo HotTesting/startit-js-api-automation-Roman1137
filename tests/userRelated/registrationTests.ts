@@ -2,7 +2,7 @@ import {expect} from "chai";
 import {
     RegistrationService,
     User
-} from "./index";
+} from "../index";
 
 describe('Registration tests', async () => {
     let registrationService = new RegistrationService();

@@ -3,7 +3,7 @@ import {
     RegistrationService,
     User,
     LoginService
-} from "./index";
+} from "../index";
 
 describe('Login tests', async () => {
     let registrationService = new RegistrationService(),

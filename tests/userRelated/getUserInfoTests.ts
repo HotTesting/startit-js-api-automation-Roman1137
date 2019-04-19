@@ -5,7 +5,7 @@ import {
     RegistrationService,
     UserListService,
     User, GetUserInfoService
-} from "./index";
+} from "../index";
 
 describe('Get User Info tests', async () => {
 
