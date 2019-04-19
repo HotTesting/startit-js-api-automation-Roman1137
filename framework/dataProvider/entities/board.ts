@@ -1,7 +1,6 @@
 import {BoardModel} from "../../models";
 import {RandomDataGenerator} from "../randomDataGenerator";
-import {Permissions} from "../enums/permissions";
-import {Color} from "../enums/color";
+import {Permissions, Color} from "../enums";
 import {ConsoleLogger} from "../../../loggers";
 
 export class Board {

@@ -1,6 +1,5 @@
 import {
     TypifiedResponse,
-    Board,
     BoardCreationResultResponse,
     LoginService,
     Request,

@@ -1,2 +1,2 @@
-export {CreateBoardService} from "./boardService";
+export {CreateBoardService} from "./createBoardService";
 export {GetAllBoardsService} from "./getAllBoardsService";
