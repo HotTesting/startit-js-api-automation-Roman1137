@@ -50,8 +50,8 @@ describe('Get User Info tests', async () => {
             let user = User.GenerateValid();
             let registeredResponse = await registrationService.registerUser(user);
 
-            let defaultUserToken = await loginService.getDefaultUserToken();
-            let getInfoResponse = await getUserInfoService.getUserInfoUsingSpecificToken(registeredResponse.body.id, defaultUserToken);
+            let loginResponse = await loginService.loginAsDefaultUser();
+            let getInfoResponse = await getUserInfoService.getUserInfoUsingSpecificToken(registeredResponse.body.id, loginResponse.token);
 
             expect(getInfoResponse.body.isClientSafe).to.eql(true);
             expect(getInfoResponse.body.error).to.eql("Forbidden");

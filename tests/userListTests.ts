@@ -48,8 +48,8 @@ describe('User-lists tests', async () => {
     describe('negative cases', async () => {
 
         it('should return error when non-admin token is used', async () => {
-            let defaultUserToken = await loginService.getDefaultUserToken();
-            let response = await userListService.getAllUsersInfoUsingSpecificToken(defaultUserToken);
+            let loginResponse = await loginService.loginAsDefaultUser();
+            let response = await userListService.getAllUsersInfoUsingSpecificToken(loginResponse.token);
 
             expect(response.body.isClientSafe).to.eql(true);
             expect(response.body.error).to.eql("Forbidden");

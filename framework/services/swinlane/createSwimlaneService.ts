@@ -10,12 +10,12 @@ import {
 export class CreateSwimlaneService {
 
     public async createSwimlaneByBoardId(swimlane: SwimlaneModel, boardId: string): Promise<TypifiedResponse<SwimLaneCreationResponseModel>> {
-        let token = await new LoginService().getAdminToken();
+        let loginResponse = await new LoginService().loginAsAdmin();
         let absoluteUrn = `${process.env.WEKAN_BOARDS_URN}/${boardId}${process.env.WEKAN_SWIMLANES_URN}`;
 
         return await new Request(absoluteUrn)
             .method("POST")
-            .auth(token)
+            .auth(loginResponse.token)
             .body(swimlane)
             .send();
     }

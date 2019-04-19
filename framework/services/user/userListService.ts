@@ -9,11 +9,11 @@ import {
 export class UserListService {
 
     public async getAllUsersInfo(): Promise<TypifiedResponse<Array<UserInfo>>> {
-        let token = await new LoginService().getAdminToken();
+        let loginResponse = await new LoginService().loginAsAdmin();
 
         return await new Request(process.env.WEKAN_USERS_URN)
             .method("GET")
-            .auth(token)
+            .auth(loginResponse.token)
             .send();
     }
 

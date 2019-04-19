@@ -10,11 +10,11 @@ export class DeleteUserService {
 
     public async deleteUser(userId: string): Promise<TypifiedResponse<DeletedUserResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
-        let token = await new LoginService().getAdminToken();
+        let loginResponse = await new LoginService().loginAsAdmin();
 
         return await new Request(absoluteUrl)
             .method("DELETE")
-            .auth(token)
+            .auth(loginResponse.token)
             .send();
     }
 

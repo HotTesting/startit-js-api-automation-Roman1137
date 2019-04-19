@@ -31,15 +31,15 @@ export class LoginService {
         }
     }
 
-    public async getAdminToken(): Promise<string> {
+    public async loginAsAdmin(): Promise<UserAuthResultResponse> {
         let result = await this.login(User.Admin);
 
-        return Promise.resolve(result.body.token);
+        return Promise.resolve(result.body);
     }
 
-    public async getDefaultUserToken(): Promise<string> {
+    public async loginAsDefaultUser(): Promise<UserAuthResultResponse> {
         let result = await this.login(User.Default);
 
-        return Promise.resolve(result.body.token);
+        return Promise.resolve(result.body);
     }
 }

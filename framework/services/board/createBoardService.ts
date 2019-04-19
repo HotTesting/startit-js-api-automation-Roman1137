@@ -10,11 +10,11 @@ import {
 export class CreateBoardService {
 
     public async createBoard(board: BoardModel): Promise<TypifiedResponse<BoardCreationResultResponse>> {
-        let token = await new LoginService().getAdminToken();
+        let loginResponse = await new LoginService().loginAsAdmin();
 
         return await new Request(process.env.WEKAN_BOARDS_URN)
             .method("POST")
-            .auth(token)
+            .auth(loginResponse.token)
             .body(board)
             .send();
     }

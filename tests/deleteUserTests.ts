@@ -38,9 +38,9 @@ describe('Delete user tests', async () => {
             let registrationResponse = await registrationService.registerUser(user);
 
             // act
-            let defaultUserToken = await loginService.getDefaultUserToken();
+            let loginResponse = await loginService.loginAsDefaultUser();
             let deleteUserResponse = await deleteUserService
-                .deleteUserUsingSpecificToken(registrationResponse.body.id, defaultUserToken);
+                .deleteUserUsingSpecificToken(registrationResponse.body.id, loginResponse.token);
 
             // assert
             expect(deleteUserResponse.body.isClientSafe).to.eql(true);

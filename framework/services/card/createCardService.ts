@@ -1,26 +1,29 @@
 import {
     TypifiedResponse,
+    BoardCreationResultResponse,
     LoginService,
     Request,
     ForbidderErrorReponse,
-    GetBoardResponseModel,
+    BoardModel,
 } from "../../index";
 
-export class GetAllBoardsService {
+export class CreateCardService {
 
-    public async getAllBoards(): Promise<TypifiedResponse<Array<GetBoardResponseModel>>> {
+    public async createCard(board: BoardModel): Promise<TypifiedResponse<BoardCreationResultResponse>> {
         let loginResponse = await new LoginService().loginAsAdmin();
 
         return await new Request(process.env.WEKAN_BOARDS_URN)
-            .method("GET")
+            .method("POST")
             .auth(loginResponse.token)
+            .body(board)
             .send();
     }
 
-    public async getAllBoardsWithoutToken(): Promise<TypifiedResponse<ForbidderErrorReponse>> {
+    public async createBoardWithoutToken(board: BoardModel): Promise<TypifiedResponse<ForbidderErrorReponse>> {
 
         return await new Request(process.env.WEKAN_BOARDS_URN)
-            .method("GET")
+            .method("POST")
+            .body(board)
             .send();
     }
 }
