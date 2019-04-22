@@ -1,0 +1,21 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "_id": {
+        "type": "string"
+      },
+      "title": {
+        "type": "string"
+      },
+      "description": {
+        "type": "string"
+      },
+      "listId": {
+        "type": "string"
+      }
+    },
+    "required": [ "_id", "title", "description", "listId"]
+  }
+}

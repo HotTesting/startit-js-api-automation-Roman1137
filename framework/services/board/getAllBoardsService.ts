@@ -2,7 +2,6 @@ import {
     TypifiedResponse,
     LoginService,
     Request,
-    ForbidderErrorReponse,
     GetBoardResponseModel,
     SchemaJson,
 } from "../../index";
@@ -16,14 +15,7 @@ export class GetAllBoardsService extends BaseService{
         return await new Request(process.env.WEKAN_BOARDS_URN)
             .method("GET")
             .auth(loginResponse.token)
-            .send();
-    }
-
-    public async getAllBoardsWithoutToken(): Promise<TypifiedResponse<ForbidderErrorReponse>> {
-
-        return await new Request(process.env.WEKAN_BOARDS_URN)
-            .method("GET")
             .send()
-            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetAllBoards));
     }
 }

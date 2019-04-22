@@ -17,7 +17,8 @@ export class DeleteUserService extends BaseService{
         return await new Request(absoluteUrl)
             .method("DELETE")
             .auth(loginResponse.token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.DeleteUser));
     }
 
     public async deleteUserUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {

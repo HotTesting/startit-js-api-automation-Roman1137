@@ -66,7 +66,7 @@
     },
     "emails": {
       "type": "array",
-      "items": {
+        "items": {
         "type": "object",
         "properties": {
           "address": {

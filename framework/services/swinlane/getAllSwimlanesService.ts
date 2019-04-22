@@ -2,7 +2,7 @@ import {
     TypifiedResponse,
     LoginService,
     Request,
-    GetSwimlaneResponseModel,
+    GetSwimlaneResponseModel, SchemaJson,
 } from "../../index";
 import {BaseService} from "../baseService";
 
@@ -15,6 +15,7 @@ export class GetAllSwimlanesService extends BaseService{
         return await new Request(absoluteUrn)
             .method("GET")
             .auth(loginResponse.token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetSwimlanes));
     }
 }

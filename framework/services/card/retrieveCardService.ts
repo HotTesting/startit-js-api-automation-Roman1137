@@ -3,7 +3,7 @@ import {
     LoginService,
     Request,
     ForbidderErrorReponse,
-    GetCardByIdResponseModel
+    GetCardByIdResponseModel, SchemaJson
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
 import {BaseService} from "../baseService";
@@ -17,7 +17,8 @@ export class RetrieveCardService extends BaseService{
         return await new Request(absoluteUrn)
             .method("GET")
             .auth(loginResponse.token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetCardById));
     }
 
     public async retrieveAllCardsFromBoardBySwimlaneIdWithoutToken(boardId: string, swimlaneId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {

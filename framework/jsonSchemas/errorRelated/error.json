@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "integer"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [ "error", "reason"]
+}

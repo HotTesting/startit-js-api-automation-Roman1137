@@ -4,6 +4,7 @@ import {
     Request,
     CardModel,
     CardCreationResultResponse,
+    SchemaJson,
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
 import {BaseService} from "../baseService";
@@ -18,7 +19,8 @@ export class CreateCardService extends BaseService{
             .method("POST")
             .auth(loginResponse.token)
             .body(card)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.CreateCard));
     }
 
     public async createCardByBoardIdWithoutToken(card: CardModel, boardId: string): Promise<TypifiedResponse<string>> {

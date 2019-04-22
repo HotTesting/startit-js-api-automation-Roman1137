@@ -8,7 +8,7 @@ import {
 } from "../../index"
 import {BaseService} from "../baseService";
 
-export class UserListService extends BaseService{
+export class UserListService extends BaseService {
 
     public async getAllUsersInfo(): Promise<TypifiedResponse<Array<UserInfo>>> {
         let loginResponse = await new LoginService().loginAsAdmin();
@@ -16,7 +16,8 @@ export class UserListService extends BaseService{
         return await new Request(process.env.WEKAN_USERS_URN)
             .method("GET")
             .auth(loginResponse.token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetUserList));
     }
 
     public async getAllUsersInfoUsingSpecificToken(token: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {

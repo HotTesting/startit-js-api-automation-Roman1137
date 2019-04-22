@@ -19,7 +19,8 @@ export class CreateSwimlaneService extends BaseService{
             .method("POST")
             .auth(loginResponse.token)
             .body(swimlane)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.CreateSwimlane));
     }
 
     public async createSwimlaneByBoardIdWithoutToken(swimlane: SwimlaneModel, boardId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {

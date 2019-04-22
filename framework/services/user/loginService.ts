@@ -4,7 +4,7 @@ import {
     ErrorResponse,
     Request,
     User,
-    TypifiedResponse
+    TypifiedResponse, SchemaJson
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
 import {BaseService} from "../baseService";
@@ -16,7 +16,8 @@ export class LoginService extends BaseService{
         return await new Request(process.env.WEKAN_LOGIN_URN)
             .method("POST")
             .body({ email: user.email, password: user.password })
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetAuth));
     }
 
     public async loginIncorrectly(user: UserModel): Promise<TypifiedResponse<ErrorResponse>> {
@@ -28,7 +29,7 @@ export class LoginService extends BaseService{
         }
         catch (error) {
             ConsoleLogger.debug(`Unsuccessful status code is expected. Error: ${error}`);
-            return error.response;
+            return this.validateWithJsonSchema(error.response, SchemaJson.Error);
         }
     }
 

@@ -2,7 +2,8 @@ import {
     Request,
     TypifiedResponse,
     ForbidderErrorReponse,
-    UserLoggedInfoResponse, SchemaJson
+    UserLoggedInfoResponse,
+    SchemaJson
 } from "../../index"
 import {BaseService} from "../baseService";
 
@@ -13,7 +14,8 @@ export class GetLoggedUserInfoService extends BaseService{
         return await new Request(process.env.WEKAN_USER_URN)
             .method("GET")
             .auth(token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetLoggedUserInfo));
     }
 
     public async getUserInfoByTokenIncorrectly(token: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
