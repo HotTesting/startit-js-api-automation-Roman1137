@@ -5,6 +5,7 @@ import {
     Request,
     ForbidderErrorReponse,
     BoardModel,
+    SchemaJson,
 } from "../../index";
 import {BaseService} from "../baseService";
 
@@ -17,7 +18,8 @@ export class CreateBoardService extends BaseService{
             .method("POST")
             .auth(loginResponse.token)
             .body(board)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.CreateBoard));
     }
 
     public async createBoardWithoutToken(board: BoardModel): Promise<TypifiedResponse<ForbidderErrorReponse>> {

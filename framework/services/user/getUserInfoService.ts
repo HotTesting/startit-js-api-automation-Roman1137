@@ -4,6 +4,7 @@ import {
     TypifiedResponse,
     ForbidderErrorReponse,
     UserInfoResponse,
+    SchemaJson,
 } from "../../index"
 import {BaseService} from "../baseService";
 
@@ -13,12 +14,11 @@ export class GetUserInfoService extends BaseService {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let loginResponse = await new LoginService().loginAsAdmin();
 
-        let response = await new Request(absoluteUrl)
+        return await new Request(absoluteUrl)
             .method("GET")
             .auth(loginResponse.token)
-            .send();
-
-        return super.validateWithJsonSchema(response,"getUserInfo");
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.GetUserInfo));
     }
 
     public async getUserInfoUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {
