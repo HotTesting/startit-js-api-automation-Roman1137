@@ -1,10 +1,10 @@
-import {expect} from "chai";
 import {
     LoginService,
     RegistrationService,
     User,
     UserListService,
-    DeleteUserService
+    DeleteUserService,
+    expect
 } from "../index";
 
 describe('User-lists tests', async () => {

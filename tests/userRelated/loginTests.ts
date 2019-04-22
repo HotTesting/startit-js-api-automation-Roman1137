@@ -1,8 +1,8 @@
-import {expect} from "chai";
 import {
     RegistrationService,
     User,
-    LoginService
+    LoginService,
+    expect
 } from "../index";
 
 describe('Login tests', async () => {

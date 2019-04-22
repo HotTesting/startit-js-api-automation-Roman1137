@@ -1,9 +1,9 @@
-import {expect} from "chai";
 import {
     Board,
     CreateBoardService,
     GetAllBoardsService,
-    Permissions
+    Permissions,
+    expect
 } from "./index";
 
 describe('Create board tests', async () => {

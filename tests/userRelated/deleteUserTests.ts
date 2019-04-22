@@ -1,9 +1,9 @@
-import {expect} from "chai";
 import {
     DeleteUserService,
     LoginService,
     RegistrationService,
-    User
+    User,
+    expect
 } from "../index";
 
 describe('Delete user tests', async () => {

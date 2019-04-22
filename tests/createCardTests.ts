@@ -1,4 +1,3 @@
-import {expect} from "chai";
 import {
     Board,
     CreateBoardService,
@@ -6,7 +5,12 @@ import {
     LoginService,
     Swimlane,
     Card,
-    CreateCardService, TypifiedResponse, CardCreationResultResponse, CardModel, RetrieveCardService
+    CreateCardService,
+    TypifiedResponse,
+    CardCreationResultResponse,
+    CardModel,
+    RetrieveCardService,
+    expect
 } from "./index";
 
 describe('Create card tests', async () => {

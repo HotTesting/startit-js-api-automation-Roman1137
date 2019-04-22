@@ -1,4 +1,3 @@
-import {expect} from "chai";
 import {
     Board,
     CreateBoardService,
@@ -7,7 +6,8 @@ import {
     Swimlane,
     TypifiedResponse,
     SwimLaneCreationResponseModel,
-    SwimlaneModel
+    SwimlaneModel,
+    expect
 } from "./index";
 
 describe('Create board tests', async () => {
