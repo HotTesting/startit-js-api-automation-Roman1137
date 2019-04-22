@@ -27,6 +27,7 @@ export class CreateBoardService extends BaseService{
         return await new Request(process.env.WEKAN_BOARDS_URN)
             .method("POST")
             .body(board)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

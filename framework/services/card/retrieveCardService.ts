@@ -2,7 +2,8 @@ import {
     TypifiedResponse,
     LoginService,
     Request,
-    ForbidderErrorReponse, GetCardByIdResponseModel
+    ForbidderErrorReponse,
+    GetCardByIdResponseModel
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
 import {BaseService} from "../baseService";

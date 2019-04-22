@@ -3,7 +3,8 @@ import {
     Request,
     TypifiedResponse,
     ForbidderErrorReponse,
-    UserInfo
+    UserInfo,
+    SchemaJson
 } from "../../index"
 import {BaseService} from "../baseService";
 
@@ -22,12 +23,14 @@ export class UserListService extends BaseService{
         return await new Request(process.env.WEKAN_USERS_URN)
             .method("GET")
             .auth(token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 
     public async getAllUsersInfoWithoutToken(): Promise<TypifiedResponse<ForbidderErrorReponse>> {
         return await new Request(process.env.WEKAN_USERS_URN)
             .method("GET")
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

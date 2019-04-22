@@ -4,6 +4,7 @@ import {
     Request,
     ForbidderErrorReponse,
     GetBoardResponseModel,
+    SchemaJson,
 } from "../../index";
 import {BaseService} from "../baseService";
 
@@ -22,6 +23,7 @@ export class GetAllBoardsService extends BaseService{
 
         return await new Request(process.env.WEKAN_BOARDS_URN)
             .method("GET")
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

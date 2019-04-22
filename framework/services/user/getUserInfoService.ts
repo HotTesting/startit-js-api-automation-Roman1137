@@ -27,7 +27,8 @@ export class GetUserInfoService extends BaseService {
         return await new Request(absoluteUrl)
             .method("GET")
             .auth(token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 
     public async getUserInfoWithoutToken(userId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
@@ -35,6 +36,7 @@ export class GetUserInfoService extends BaseService {
 
         return await new Request(absoluteUrl)
             .method("GET")
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

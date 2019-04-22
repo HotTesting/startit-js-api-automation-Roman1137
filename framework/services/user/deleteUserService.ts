@@ -3,7 +3,8 @@ import {
     Request,
     TypifiedResponse,
     ForbidderErrorReponse,
-    DeletedUserResponse
+    DeletedUserResponse,
+    SchemaJson
 } from "../../index"
 import {BaseService} from "../baseService";
 
@@ -25,7 +26,8 @@ export class DeleteUserService extends BaseService{
         return await new Request(absoluteUrl)
             .method("DELETE")
             .auth(token)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 
     public async deleteUserWithoutToken(userId: string): Promise<TypifiedResponse<ForbidderErrorReponse>> {
@@ -33,6 +35,7 @@ export class DeleteUserService extends BaseService{
 
         return await new Request(absoluteUrl)
             .method("DELETE")
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

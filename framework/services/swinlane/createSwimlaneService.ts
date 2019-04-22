@@ -4,7 +4,8 @@ import {
     Request,
     ForbidderErrorReponse,
     SwimLaneCreationResponseModel,
-    SwimlaneModel
+    SwimlaneModel,
+    SchemaJson
 } from "../../index";
 import {BaseService} from "../baseService";
 
@@ -27,6 +28,7 @@ export class CreateSwimlaneService extends BaseService{
         return await new Request(absoluteUrn)
             .method("POST")
             .body(swimlane)
-            .send();
+            .send()
+            .then(res => this.validateWithJsonSchema(res, SchemaJson.PermissionsError));
     }
 }

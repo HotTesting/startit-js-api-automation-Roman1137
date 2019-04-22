@@ -1,4 +1,5 @@
 export enum SchemaJson {
     GetUserInfo = "getUserInfo",
-    CreateBoard = "createBoard"
+    CreateBoard = "createBoard",
+    PermissionsError = "permissionsError"
 }
