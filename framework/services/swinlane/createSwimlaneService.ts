@@ -6,8 +6,9 @@ import {
     SwimLaneCreationResponseModel,
     SwimlaneModel
 } from "../../index";
+import {BaseService} from "../baseService";
 
-export class CreateSwimlaneService {
+export class CreateSwimlaneService extends BaseService{
 
     public async createSwimlaneByBoardId(swimlane: SwimlaneModel, boardId: string): Promise<TypifiedResponse<SwimLaneCreationResponseModel>> {
         let loginResponse = await new LoginService().loginAsAdmin();

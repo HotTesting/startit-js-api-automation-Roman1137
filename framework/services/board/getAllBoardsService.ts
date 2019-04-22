@@ -5,8 +5,9 @@ import {
     ForbidderErrorReponse,
     GetBoardResponseModel,
 } from "../../index";
+import {BaseService} from "../baseService";
 
-export class GetAllBoardsService {
+export class GetAllBoardsService extends BaseService{
 
     public async getAllBoards(): Promise<TypifiedResponse<Array<GetBoardResponseModel>>> {
         let loginResponse = await new LoginService().loginAsAdmin();

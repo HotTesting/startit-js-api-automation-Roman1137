@@ -5,9 +5,10 @@ import {
     Request,
     TypifiedResponse
 } from "../../index";
-import {ConsoleLogger} from "../../../loggers/index";
+import {ConsoleLogger} from "../../../loggers";
+import {BaseService} from "../baseService";
 
-export class RegistrationService {
+export class RegistrationService extends BaseService{
 
     public async registerUser(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
 

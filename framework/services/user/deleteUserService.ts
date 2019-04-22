@@ -5,8 +5,9 @@ import {
     ForbidderErrorReponse,
     DeletedUserResponse
 } from "../../index"
+import {BaseService} from "../baseService";
 
-export class DeleteUserService {
+export class DeleteUserService extends BaseService{
 
     public async deleteUser(userId: string): Promise<TypifiedResponse<DeletedUserResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;

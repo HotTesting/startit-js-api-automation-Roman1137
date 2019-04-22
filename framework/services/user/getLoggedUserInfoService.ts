@@ -4,8 +4,9 @@ import {
     ForbidderErrorReponse,
     UserLoggedInfoResponse
 } from "../../index"
+import {BaseService} from "../baseService";
 
-export class GetLoggedUserInfoService {
+export class GetLoggedUserInfoService extends BaseService{
 
     public async getUserInfoByToken(token: string): Promise<TypifiedResponse<UserLoggedInfoResponse>> {
 

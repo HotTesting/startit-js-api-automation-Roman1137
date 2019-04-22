@@ -7,8 +7,9 @@ import {
     TypifiedResponse
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
+import {BaseService} from "../baseService";
 
-export class LoginService {
+export class LoginService extends BaseService{
 
     public async login(user: UserModel): Promise<TypifiedResponse<UserAuthResultResponse>> {
 

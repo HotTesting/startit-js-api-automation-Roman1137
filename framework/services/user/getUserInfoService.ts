@@ -2,21 +2,23 @@ import {
     LoginService,
     Request,
     TypifiedResponse,
-    ErrorResponse,
     ForbidderErrorReponse,
-    UserInfoResponse
+    UserInfoResponse,
 } from "../../index"
+import {BaseService} from "../baseService";
 
-export class GetUserInfoService {
+export class GetUserInfoService extends BaseService {
 
     public async getUserInfo(userId): Promise<TypifiedResponse<UserInfoResponse>> {
         let absoluteUrl = `${process.env.WEKAN_USERS_URN}/${userId}`;
         let loginResponse = await new LoginService().loginAsAdmin();
 
-        return await new Request(absoluteUrl)
+        let response = await new Request(absoluteUrl)
             .method("GET")
             .auth(loginResponse.token)
             .send();
+
+        return super.validateWithJsonSchema(response,"getUserInfo");
     }
 
     public async getUserInfoUsingSpecificToken(userId: string, token: string,): Promise<TypifiedResponse<ForbidderErrorReponse>> {

@@ -1,13 +1,13 @@
 import {
     TypifiedResponse,
-    BoardCreationResultResponse,
     LoginService,
     Request,
     ForbidderErrorReponse, GetCardByIdResponseModel
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
+import {BaseService} from "../baseService";
 
-export class RetrieveCardService {
+export class RetrieveCardService extends BaseService{
 
     public async retrieveAllCardsFromBoardBySwimlaneId(boardId: string, swimlaneId: string): Promise<TypifiedResponse<Array<GetCardByIdResponseModel>>> {
         let loginResponse = await new LoginService().loginAsAdmin();

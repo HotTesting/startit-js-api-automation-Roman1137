@@ -5,8 +5,9 @@ import {
     ForbidderErrorReponse,
     UserInfo
 } from "../../index"
+import {BaseService} from "../baseService";
 
-export class UserListService {
+export class UserListService extends BaseService{
 
     public async getAllUsersInfo(): Promise<TypifiedResponse<Array<UserInfo>>> {
         let loginResponse = await new LoginService().loginAsAdmin();

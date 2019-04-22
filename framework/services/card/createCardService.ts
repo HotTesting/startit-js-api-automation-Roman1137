@@ -6,8 +6,9 @@ import {
     CardCreationResultResponse,
 } from "../../index";
 import {ConsoleLogger} from "../../../loggers";
+import {BaseService} from "../baseService";
 
-export class CreateCardService {
+export class CreateCardService extends BaseService{
 
     public async createCardByBoardId(card: CardModel, boardId: string): Promise<TypifiedResponse<CardCreationResultResponse>> {
         let loginResponse = await new LoginService().loginAsAdmin();
